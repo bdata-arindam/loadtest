@@ -1,0 +1,109 @@
+# Druid Data Management Script
+
+This Python script allows you to interact with a secured Druid cluster to perform various data management tasks. It uses a configuration file (`config.json`) to specify the tasks to execute, Druid URLs, credentials, and other parameters.
+
+## Prerequisites
+
+Before running the script, ensure you have the following prerequisites:
+
+1. Python 3.x installed. You can download Python from the [official website](https://www.python.org/downloads/).
+
+2. Required Python packages. Install them using pip:
+
+pip install requests
+
+bash
+Copy code
+
+## Installation
+
+1. Clone this repository to your local machine:
+
+git clone https://github.com/yourusername/druid-data-management.git
+
+css
+Copy code
+
+2. Navigate to the project directory:
+
+cd druid-data-management
+
+sql
+Copy code
+
+## Configuration
+
+1. Edit the `config.json` file to configure your tasks and Druid cluster settings.
+
+- Update the `"druid_urls"` array with your Druid cluster URLs, usernames, and passwords.
+- Set the `"retry_count"` to the desired number of retries for tasks.
+- Specify the `"log_file_location"` for logging, or leave it blank for console output.
+- Define the `"tasks"` array to specify the tasks to execute, whether they are enabled, and their configurations.
+
+Example `config.json`:
+
+```json
+{
+ "druid_urls": [
+     {
+         "url": "https://druid1:8082/druid/v2/sql",
+         "username": "your_username_1",
+         "password": "your_password_1"
+     },
+     {
+         "url": "https://druid2:8082/druid/v2/sql",
+         "username": "your_username_2",
+         "password": "your_password_2"
+     }
+ ],
+ "retry_count": 3,
+ "datasource_name": "your_datasource_name",
+ "csv_file_path": "/path/to/your/data.csv",
+ "log_file_location": "/path/to/logfile.log",
+ "tasks": [
+     {
+         "task_name": "Create Datasource",
+         "module": "create_datasource",
+         "function": "create_datasource",
+         "enabled": true,
+         "retry_count": 5,
+         "druid_url_index": 0
+     },
+     {
+         "task_name": "Run Select Query",
+         "module": "run_select_query",
+         "function": "run_select_query",
+         "enabled": false,
+         "retry_count": 3,
+         "druid_url_index": 1
+     },
+     {
+         "task_name": "Replace Datasource",
+         "module": "replace_datasource",
+         "function": "replace_datasource",
+         "enabled": true,
+         "retry_count": 2,
+         "druid_url_index": 0
+     }
+ ]
+}
+Update the "druid_urls" array with your Druid cluster URLs, usernames, and passwords. Ensure that "enabled" is set to true for the tasks you want to execute.
+Execution
+To execute the script, follow these steps:
+
+Open a terminal or command prompt.
+
+Navigate to the project directory if you're not already there:
+
+bash
+Copy code
+cd /path/to/druid-data-management
+Run the main script by executing:
+
+css
+Copy code
+python main.py
+The script will prompt you to enter the path to the config.json file.
+
+After providing the path to the config.json file, the script will execute the specified tasks based on your configuration.
+
