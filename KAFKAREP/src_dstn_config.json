@@ -1,0 +1,39 @@
+{
+    "source_topic": "source_topic_name",
+    "source_bootstrap_servers": "source_kafka_brokers",
+    "source_data_format": "JSON",
+    "source_ssl_cafile": "/path/to/source/cafile.crt",
+    "source_ssl_certfile": "/path/to/source/certfile.crt",
+    "source_ssl_keyfile": "/path/to/source/keyfile.key",
+    "source_recovery_file": "source_recovery.txt",
+    "source_log_interval": 60,
+    "source_error_retry_interval": 5,
+
+    "destination_topic": "destination_topic_name",
+    "destination_bootstrap_servers": "destination_kafka_brokers",
+    "destination_data_format": "Avro",
+    "destination_ssl_cafile": "/path/to/destination/cafile.crt",
+    "destination_ssl_certfile": "/path/to/destination/certfile.crt",
+    "destination_ssl_keyfile": "/path/to/destination/keyfile.key",
+    "destination_recovery_file": "destination_recovery.txt",
+    "destination_log_interval": 60,
+    "destination_error_retry_interval": 5,
+
+    "num_consumer_threads": 2,
+    "num_producer_threads": 2,
+    "out_file": "out.txt",
+    "memory_per_thread": 256,
+    "config_check_interval": 60,
+
+    "log_file_location": "./logs",
+    "log_file_name": "my_kafka_app.log",
+
+    "consume_and_replicate_config": {
+        "param1": "value1",
+        "param2": "value2",
+        "param3": 123
+    },
+
+    "memory_limit_percent": 50,
+    "cpu_limit_percent": 50
+}

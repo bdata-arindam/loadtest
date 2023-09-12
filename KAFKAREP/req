@@ -1,0 +1,13 @@
+kafka-python==2.0.2
+avro-python3==1.10.2
+psutil==5.8.0
+
+my_kafka_app/
+    ├── src/
+    │    ├── __init__.py
+    │    ├── kafka_app.py
+    ├── config/
+    │    ├── src_dstn_config.json
+    ├── logs/
+    ├── requirements.txt
+    ├── main.py
