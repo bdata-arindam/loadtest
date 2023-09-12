@@ -1,0 +1,23 @@
+{
+    "dat_directory": "/path/to/dat/files",  // Directory where .dat files are located
+    "dat_file_pattern": "DONE_\\d{4}_\\d{2}_\\d{2}_\\d{10}\\.dat",  // Regular expression pattern for .dat file names
+    "polling_interval": 10,  // Polling interval in seconds
+
+    "email_alert": {
+        "enabled": true,  // Enable or disable email alerts
+        "subject_prefix": "Data Processing Report - ",  // Prefix for email subject
+        "receiver_email": "receiver@example.com",  // Email address to receive alerts
+        "sender_email": "sender@example.com",  // Your sender email address
+        "smtp_server": "smtp.example.com",  // SMTP server address (e.g., smtp.example.com)
+        // "sender_password": "your_sender_password",  // Uncomment and set your sender's password if needed
+        "alert_interval_hours": 1  // Email alert interval in hours (e.g., 1 for hourly alerts)
+    },
+
+    "druid_api_url": "https://your-druid-server-url",  // URL for Druid's API endpoint
+    "datasource": "your-datasource-name",  // Druid datasource name
+    "druid_username": "your-username",  // Username for Druid authentication
+    "druid_password": "your-password",  // Password for Druid authentication
+
+    "log_directory": "/path/to/log/directory",  // Directory for log files
+    "log_filename": "dat_to_druid.log"  // Log file name
+}

@@ -1,0 +1,112 @@
+{
+    "columns": [
+        {
+            "name": "datetime",  // Name of the datetime column
+            "range": null  // No position range for datetime, it will be set to the current timestamp when appending
+        },
+        {
+            "name": "column1",
+            "range": [1, 6]  // Position range for column1 (1-6)
+        },
+        {
+            "name": "column2",
+            "range": [7, 12]  // Position range for column2 (7-12)
+        },
+        {
+            "name": "column3",
+            "range": [13, 18]  // Position range for column3 (13-18)
+        },
+        {
+            "name": "column4",
+            "range": [19, 24]  // Position range for column4 (19-24)
+        },
+        {
+            "name": "column5",
+            "range": [25, 30]  // Position range for column5 (25-30)
+        },
+        {
+            "name": "column6",
+            "range": [31, 36]  // Position range for column6 (31-36)
+        },
+        {
+            "name": "column7",
+            "range": [37, 42]  // Position range for column7 (37-42)
+        },
+        {
+            "name": "column8",
+            "range": [43, 48]  // Position range for column8 (43-48)
+        },
+        {
+            "name": "column9",
+            "range": [49, 54]  // Position range for column9 (49-54)
+        },
+        {
+            "name": "column10",
+            "range": [55, 60]  // Position range for column10 (55-60)
+        },
+        {
+            "name": "column11",
+            "range": [61, 66]  // Position range for column11 (61-66)
+        },
+        {
+            "name": "column12",
+            "range": [67, 72]  // Position range for column12 (67-72)
+        },
+        {
+            "name": "column13",
+            "range": [73, 78]  // Position range for column13 (73-78)
+        },
+        {
+            "name": "column14",
+            "range": [79, 84]  // Position range for column14 (79-84)
+        },
+        {
+            "name": "column15",
+            "range": [85, 90]  // Position range for column15 (85-90)
+        },
+        {
+            "name": "column16",
+            "range": [91, 96]  // Position range for column16 (91-96)
+        },
+        {
+            "name": "column17",
+            "range": [97, 102]  // Position range for column17 (97-102)
+        },
+        {
+            "name": "column18",
+            "range": [103, 108]  // Position range for column18 (103-108)
+        },
+        {
+            "name": "column19",
+            "range": [109, 114]  // Position range for column19 (109-114)
+        },
+        {
+            "name": "column20",
+            "range": [115, 120]  // Position range for column20 (115-120)
+        },
+        {
+            "name": "column21",
+            "range": [121, 126]  // Position range for column21 (121-126)
+        },
+        {
+            "name": "column22",
+            "range": [127, 132]  // Position range for column22 (127-132)
+        },
+        {
+            "name": "column23",
+            "range": [133, 138]  // Position range for column23 (133-138)
+        },
+        {
+            "name": "column24",
+            "range": [139, 144]  // Position range for column24 (139-144)
+        },
+        {
+            "name": "column25",
+            "range": [145, 150]  // Position range for column25 (145-150)
+        },
+        {
+            "name": "column26",
+            "range": [151, 156]  // Position range for column26 (151-156)
+        }
+    ]
+}
