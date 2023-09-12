@@ -1,0 +1,19 @@
+Configuration
+Before running the application,configure it by modifying the config.json file. Here's what can configure:
+
+operation_switch: Choose between "single" and "parallel" operation mode.
+memory_percentage: Set the desired memory percentage for the application.
+data_type: Specify "csv" or "fixed_length" for data loading.
+druid_operation: Choose the Druid operation ("insert", "replace", "overwrite", "append", or "new_datasource").
+csv_columns: Path to the CSV column configuration file.
+fixed_length_config: Path to the fixed-length data configuration file.
+datetime_position: Set the position of the datetime column (e.g., 1 for the first column).
+druid_config: Configure Druid connection details.
+log_file: Specify the log file path.
+Execution
+To execute the application, run the following command:
+
+python main.py
+
+This will start the application based on the configurations you've set in config.json. Follow the on-screen prompts and logs for execution details.
+

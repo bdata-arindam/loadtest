@@ -1,0 +1,131 @@
+[
+    {
+      "column_name": "datetime"
+    },
+    {
+      "column_name": "column2",
+      "start_position": 15,
+      "length": 5
+    },
+    {
+      "column_name": "column3",
+      "start_position": 21,
+      "length": 8
+    },
+    {
+      "column_name": "column4",
+      "start_position": 30,
+      "length": 6
+    },
+    {
+      "column_name": "column5",
+      "start_position": 37,
+      "length": 9
+    },
+    {
+      "column_name": "column6",
+      "start_position": 47,
+      "length": 7
+    },
+    {
+      "column_name": "column7",
+      "start_position": 56,
+      "length": 10
+    },
+    {
+      "column_name": "column8",
+      "start_position": 67,
+      "length": 5
+    },
+    {
+      "column_name": "column9",
+      "start_position": 75,
+      "length": 8
+    },
+    {
+      "column_name": "column10",
+      "start_position": 86,
+      "length": 6
+    },
+    {
+      "column_name": "column11",
+      "start_position": 94,
+      "length": 7
+    },
+    {
+      "column_name": "column12",
+      "start_position": 103,
+      "length": 6
+    },
+    {
+      "column_name": "column13",
+      "start_position": 112,
+      "length": 9
+    },
+    {
+      "column_name": "column14",
+      "start_position": 123,
+      "length": 5
+    },
+    {
+      "column_name": "column15",
+      "start_position": 132,
+      "length": 8
+    },
+    {
+      "column_name": "column16",
+      "start_position": 141,
+      "length": 7
+    },
+    {
+      "column_name": "column17",
+      "start_position": 150,
+      "length": 10
+    },
+    {
+      "column_name": "column18",
+      "start_position": 162,
+      "length": 5
+    },
+    {
+      "column_name": "column19",
+      "start_position": 172,
+      "length": 8
+    },
+    {
+      "column_name": "column20",
+      "start_position": 183,
+      "length": 6
+    },
+    {
+      "column_name": "column21",
+      "start_position": 194,
+      "length": 7
+    },
+    {
+      "column_name": "column22",
+      "start_position": 206,
+      "length": 6
+    },
+    {
+      "column_name": "column23",
+      "start_position": 218,
+      "length": 9
+    },
+    {
+      "column_name": "column24",
+      "start_position": 227,
+      "length": 5
+    },
+    {
+      "column_name": "column25",
+      "start_position": 238,
+      "length": 8
+    },
+    {
+      "column_name": "column26",
+      "start_position": 249,
+      "length": 7
+    }
+  ]
+  

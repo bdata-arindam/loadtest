@@ -1,0 +1,25 @@
+{
+    "operation_switch": "single",   // Possible values: "single", "parallel"
+  
+    "memory_percentage": 2,        // Possible values: Any positive integer
+  
+    "data_type": "csv",            // Possible values: "csv", "fixed_length"
+  
+    "druid_operation": "insert",   // Possible values: "insert", "replace", "overwrite", "append", "new_datasource"
+  
+    "csv_columns": "csv_columns.json",     // Path to CSV column configuration file
+  
+    "fixed_length_config": "fixed_length_config.json", // Path to fixed-length data configuration file
+  
+    "datetime_position": 1,       // Possible values: 1 (for the first column), 2, 3, ...
+  
+    "druid_config": {
+      "host": "druid-hostname",   // Druid cluster hostname
+      "port": 8082,               // Druid cluster port
+      "path": "/druid/v2/sql",    // Druid API path
+      "scheme": "http",           // Scheme: "http" or "https"
+      "timeout": 30               // Druid connection timeout in seconds
+    },
+  
+    "log_file": "application.log"  // Path to the log file
+  }  
