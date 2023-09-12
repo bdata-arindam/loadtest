@@ -1,0 +1,65 @@
+# Kafka Message Processing Application
+
+This application is designed to consume messages from a Kafka topic, process the messages, perform aggregation, and optionally write the aggregated data to a MySQL database. The application is modularized, and you can configure it using a common configuration file and individual module-specific JSON configuration files.
+
+## Prerequisites
+
+Before running the application, make sure you have the following prerequisites installed:
+
+- Python 3.x
+- pip (Python package manager)
+
+You'll also need to install the required Python libraries using the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Installation
+
+
+## Configuration
+
+- **Common Configuration (`common_config.json`):** This JSON file holds parameters for all modules. Customize this file to configure the behavior of each module.
+
+- **Kafka Consumer Configuration (`kafka_consumer_config.json`):** Configure Kafka consumer settings, including Kafka topic, bootstrap servers, security protocols, SASL/GSSAPI settings, etc.
+
+- **Kafka Producer Configuration (`kafka_producer_config.json`):** Configure Kafka producer settings if you plan to write data back to Kafka topics.
+
+- **Message Processing Configuration (`message_processing_config.json`):** Customize message processing parameters, such as filter conditions and aggregation settings.
+
+- **MySQL Configuration (`mysql_config.json`, optional):** Configure MySQL database connection parameters if you intend to save aggregated data to a MySQL database.
+
+## Usage
+
+1. Modify the configuration files as needed:
+
+   - `common_config.json`: Configure common settings for all modules.
+   - `kafka_consumer_config.json`: Specify Kafka consumer settings.
+   - `kafka_producer_config.json`: Configure Kafka producer settings (if needed).
+   - `message_processing_config.json`: Customize message processing and aggregation settings.
+   - `mysql_config.json` (optional): Configure MySQL database settings if you plan to use a database.
+
+2. Run the main program `main.py` to start the application:
+
+```bash
+python main.py
+```
+
+The application will consume messages from the Kafka topic, process them, and perform aggregation according to your configurations.
+
+## Modules
+
+- `kafka_consumer.py`: Handles Kafka message consumption with SASL/GSSAPI (Kerberos) security. Parses Kafka consumer configuration from the common config.
+
+- `kafka_producer.py`: Handles Kafka message production or writing aggregated data back to Kafka. Parses Kafka producer configuration from the common config.
+
+- `message_processing.py`: Processes Kafka messages, applies filters, performs aggregation, and stores data. It uses the configuration provided in the common config.
+
+- `cache.py`: Manages in-memory caching of data for efficient processing. Configuration for enabling/disabling caching can be set in the common config.
+
+- `filesystem_cache.py`: Manages filesystem-based caching (optional). Configuration for enabling/disabling filesystem caching can be set in the common config.
+
+- `database.py`: Handles database operations, such as saving aggregated data to MySQL (optional). Configuration for database connection and usage can be set in the common config.
+
+- `log_management.py`: Manages log files, including auto compression and deletion (optional). Configuration for log management can be set in the common config.

@@ -1,0 +1,208 @@
+'''
+
+kafka_consumer.py:
+This module handles Kafka message consumption with SASL/GSSAPI (Kerberos) security and provides the necessary functionality to consume messages from a Kafka topic.
+
+In this module:
+
+We import the necessary libraries, including json for loading configuration and KafkaConsumer from the kafka library for consuming messages.
+The consume_kafka_messages function takes the configuration as input and initializes a Kafka consumer with the provided settings.
+It creates a KafkaConsumer instance with the specified Kafka topic, bootstrap servers, security protocol, SASL/GSSAPI settings, and other parameters.
+The function returns the initialized Kafka consumer.
+This module is responsible for setting up and providing a Kafka consumer that can be used in the main program to consume messages from the Kafka topic.
+
+Next, I'll print the details of the kafka_producer.py module.
+
+
+kafka_producer.py:
+This module handles Kafka message production or writing aggregated data back to Kafka. It also allows for writing data to a MySQL database (optional) based on the configuration provided in the common configuration file.
+
+In this module:
+
+We import the required libraries, including json for JSON serialization, KafkaProducer from the kafka library for Kafka message production, and mysql.connector for MySQL database interaction (if enabled).
+The produce_aggregated_data function is the main entry point for producing data. It takes the configuration and aggregation data as inputs.
+Inside produce_aggregated_data, we check if data should be produced to Kafka (based on the configuration) and, if so, call the produce_to_kafka function.
+The produce_to_kafka function initializes a Kafka producer with the provided Kafka settings and produces the aggregation data to the specified Kafka topic.
+If data saving to MySQL is enabled in the configuration, we call the save_to_mysql function to save the aggregation data to a MySQL database.
+The save_to_mysql function establishes a connection to the MySQL database using the configuration parameters, extracts data from the aggregation_data dictionary, and inserts it into the database table.
+This module allows for producing data to Kafka, saving data to MySQL (if configured), and handles potential errors during these operations. It plays a crucial role in storing and transmitting aggregated data.
+
+cache.py:
+This module manages in-memory caching of data for efficient processing.
+
+In this module:
+
+We define an InMemoryCache class to manage an in-memory cache as a dictionary.
+The get, set, remove, and clear methods are provided for basic cache operations.
+We also define a CacheManager class that can be used to interact with the cache.
+The CacheManager class takes a config object as an input, which specifies whether caching is enabled (use_cache).
+Depending on the configuration, the CacheManager can utilize the InMemoryCache or bypass caching entirely.
+The get, set, remove, and clear methods in CacheManager delegate the operations to the InMemoryCache only if caching is enabled.
+This module allows you to manage in-memory caching efficiently for improved data processing performance.
+
+
+filesystem_cache.py:
+This module manages filesystem-based caching (optional) for efficient data processing.
+
+In this module:
+
+We define a FilesystemCache class to manage filesystem-based caching.
+The cache directory is specified by cache_dir, and it's created if it doesn't exist.
+The _get_cache_path method calculates a unique cache path based on the key using an MD5 hash.
+The get method reads the cached data from the specified cache file.
+The set method writes data to the cache file.
+The remove method deletes a cache file.
+The clear method removes all cache files in the cache directory.
+We also define a FilesystemCacheManager class that interacts with the FilesystemCache. It checks whether caching is enabled and delegates cache operations accordingly.
+
+This module allows you to implement filesystem-based caching for efficient data processing and storage.
+
+
+message_processing.py:
+This module processes Kafka messages, applies filters, performs aggregation, and stores data based on configuration settings.
+
+In this module:
+
+We define a MessageProcessor class responsible for processing Kafka messages.
+The constructor takes the configuration (config) and a cache manager (cache_manager) as parameters.
+The process_message method parses and processes a Kafka message:
+It checks if the message data meets the filter conditions specified in the configuration.
+It calculates the time window for message processing and counts messages within that window.
+If the message meets the conditions, it calls the increment_count method to update the aggregation data.
+Any errors during message processing are logged.
+The increment_count method increments the count for a specific timestamp key in the cache. It retrieves the current count from the cache, increments it, and stores it back in the cache.
+This module is responsible for applying filter conditions to incoming Kafka messages, aggregating data, and storing it in a cache using the cache manager provided in the constructor. The cache manager can be an in-memory cache or a filesystem-based cache, depending on your configuration.
+
+log_management.py:
+This module manages log files, including auto-compression and deletion based on configuration settings.
+
+In this module:
+
+We define a LogManager class responsible for managing log files.
+The constructor takes the configuration (config) as a parameter.
+The configure_logging method sets up logging based on the configuration provided:
+It creates a rotating log handler to manage log files. Log files will be rotated when they reach the maximum size specified in the configuration (log_max_bytes).
+Log level and format are configured based on the configuration settings.
+The manage_logs method is called to perform log management tasks:
+If auto_compress_logs is enabled in the configuration, it calls the compress_logs method to compress log files.
+If auto_delete_logs is enabled in the configuration, it calls the delete_old_logs method to delete old log files.
+The compress_logs method finds all log files in the log directory, compresses them using gzip, and removes the original log files.
+The delete_old_logs method deletes log files older than the specified log_max_age_days.
+This module allows you to configure and manage log files, including log rotation, compression, and deletion, based on the settings in the common configuration file.
+
+
+database.py:
+This module handles database operations, such as saving aggregated data to MySQL (optional), based on the provided database configuration.
+
+
+In this module:
+
+We define a DatabaseManager class responsible for managing database operations.
+The constructor takes the configuration (config) as a parameter.
+The connect_to_database method establishes a connection to the MySQL database using the provided database configuration.
+The save_aggregated_data method is responsible for saving aggregated data to the database:
+It prepares and executes the SQL query specified in the configuration (save_data_query) for each row of data.
+It commits the changes to the database after all data has been processed.
+The close_database_connection method is used to close the database connection and cursor when they are no longer needed.
+You can customize the database configuration and SQL query in the common configuration file. If the save_data_query is not specified, it logs a warning.
+
+Here's an example of a common_config.json setup for the modules in your Kafka data processing and storage application:
+
+
+This example includes the configurations for various modules:
+
+Kafka consumer configuration (kafka_consumer_config)
+Kafka producer configuration (kafka_producer_config)
+Message processing configuration (message_processing_config)
+Caching configuration (cache_config)
+Database configuration (database_config)
+Log management configuration (log_management_config)
+MySQL save data query (save_data_query)
+You can customize these configurations to match your specific Kafka cluster settings, filter conditions, cache preferences, database connection, log management, and more.
+
+Remember to replace placeholder values such as your-kerberos-principal, /path/to/kerberos/keytab, your-consumer-group, your-mysql-user, your-mysql-password, your-database-name, and your_table with your actual configuration details.
+
+This common_config.json file acts as a central configuration point for all the modules in your application. Each module can load its respective configuration from this common file to ensure consistency and easy customization.
+
+Here's an example of a kafka_producer_config.json file for your Kafka producer module:
+
+In this configuration, you specify the Kafka producer settings:
+
+bootstrap_servers: The address of the Kafka brokers.
+security_protocol: The security protocol used (e.g., SASL_PLAINTEXT for SASL with plain text).
+sasl_mechanism: The SASL mechanism to use (e.g., GSSAPI for Kerberos).
+sasl_kerberos_service_name: The Kerberos service name for Kafka.
+sasl_kerberos_domain_name: The Kerberos domain name (e.g., EXAMPLE.COM).
+sasl_plain_username: Your Kerberos principal for authentication.
+sasl_plain_password: The path to your Kerberos keytab file for authentication.
+
+Replace the placeholder values (your-kerberos-principal and /path/to/kerberos/keytab) with your actual Kafka producer configuration details based on your Kafka cluster's security requirements.
+
+Here's an example of a mysql_config.json file for configuring your MySQL database module:
+
+In this configuration, you specify the MySQL database connection settings:
+
+host: The hostname or IP address of your MySQL server (e.g., mysql_host).
+port: The port on which MySQL is listening (default is 3306).
+database: The name of the database you want to connect to (e.g., your_database_name).
+user: Your MySQL username (e.g., your_mysql_username).
+password: Your MySQL password (e.g., your_mysql_password).
+Replace the placeholder values with your actual MySQL database connection details. Make sure to secure the mysql_config.json file as it contains sensitive information like the database username and password.
+
+
+Here's a detailed main.py that handles the modules as per the setup:
+
+
+This main.py script loads the common configuration, initializes the Kafka consumer, Kafka producer (if needed), caches (in-memory and filesystem), database connection (if needed), and log management. It then processes Kafka messages, performs aggregation, and performs cleanup operations when the script exits.
+
+You can run this script by specifying the --config command-line argument with the path to your common_config.json file. Make sure to customize the common_config.json and any other configuration files to match your specific setup and requirements.
+
+Here's a detailed description of each module along with the code:
+
+main.py:
+
+Description: The main program orchestrates the modules and handles the overall application flow. It loads the common configuration and initializes other modules.
+Detailed Code: Provided in previous responses.
+kafka_consumer.py:
+
+Description: This module handles Kafka message consumption with SASL/GSSAPI (Kerberos) security. It parses Kafka configuration from the common config.
+Detailed Code: Provided in previous responses.
+kafka_producer.py:
+
+Description: This module handles Kafka message production or writing aggregated data back to Kafka. It parses Kafka producer configuration from the common config. It can write data to both Kafka topics and MySQL databases based on configuration.
+Detailed Code: Provided in previous responses.
+message_processing.py:
+
+Description: This module processes Kafka messages, applies filters, performs aggregation, and stores data. It uses the configuration provided in the common config. It leverages caching for efficient processing.
+Detailed Code: Provided in previous responses.
+cache.py:
+
+Description: The CacheManager class manages in-memory caching of data for efficient processing. It can add and remove caching types as required.
+Detailed Code: Provided in previous responses.
+filesystem_cache.py:
+
+Description: This module handles filesystem-based caching (optional). It utilizes the FilesystemCache class to store and retrieve cached data.
+Detailed Code: Provided in previous responses.
+database.py:
+
+Description: The DatabaseManager class handles database operations, such as saving aggregated data to MySQL (optional). It can be configured to connect to a MySQL database and perform database operations.
+Detailed Code: Provided in previous responses.
+log_management.py:
+
+Description: The LogManager class manages log files, including auto compression and deletion (optional). It can be configured to handle log management tasks as needed.
+Detailed Code: Provided in previous responses.
+common_config.json:
+
+Description: The common JSON configuration file holds parameters for all modules. It provides a centralized way to configure the behavior of each module.
+Detailed Code: Provided in previous responses.
+kafka_producer_config.json (Optional):
+
+Description: This JSON file specifies Kafka producer configuration parameters. It can include settings for connecting to a Kafka cluster, SSL certificates, SASL settings, and topics to produce data.
+Detailed Code: Configuration format and content depend on your Kafka setup.
+mysql_config.json (Optional):
+
+Description: This JSON file contains MySQL database connection configuration. It includes settings for connecting to a MySQL database, such as the host, port, username, and password.
+Detailed Code: Configuration format and content depend on your MySQL database setup.
+These modules work together to consume Kafka messages, process data, perform caching, write to Kafka topics and databases, and manage logs based on the configurations provided. You can customize the configuration files to adapt the modules to your specific requirements and infrastructure.
+
+'''

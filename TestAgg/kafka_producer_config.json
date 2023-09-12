@@ -1,0 +1,9 @@
+{
+    "bootstrap_servers": "kafka_server:9092",
+    "security_protocol": "SASL_PLAINTEXT",
+    "sasl_mechanism": "GSSAPI",
+    "sasl_kerberos_service_name": "kafka",
+    "sasl_kerberos_domain_name": "EXAMPLE.COM",
+    "sasl_plain_username": "your-kerberos-principal",
+    "sasl_plain_password": "/path/to/kerberos/keytab"
+}

@@ -1,0 +1,55 @@
+{
+    "log_file": "app.log",
+    
+    "kafka_consumer_config": {
+        "bootstrap_servers": "kafka_server:9092",
+        "security_protocol": "SASL_PLAINTEXT",
+        "sasl_mechanism": "GSSAPI",
+        "sasl_kerberos_service_name": "kafka",
+        "sasl_kerberos_domain_name": "EXAMPLE.COM",
+        "sasl_plain_username": "your-kerberos-principal",
+        "sasl_plain_password": "/path/to/kerberos/keytab",
+        "auto_offset_reset": "earliest",
+        "group_id": "your-consumer-group"
+    },
+    
+    "kafka_producer_config": {
+        "bootstrap_servers": "kafka_server:9092",
+        "security_protocol": "SASL_PLAINTEXT",
+        "sasl_mechanism": "GSSAPI",
+        "sasl_kerberos_service_name": "kafka",
+        "sasl_kerberos_domain_name": "EXAMPLE.COM",
+        "sasl_plain_username": "your-kerberos-principal",
+        "sasl_plain_password": "/path/to/kerberos/keytab"
+    },
+    
+    "message_processing_config": {
+        "filter_conditions": {
+            "column1": "value1",
+            "column2": "value2"
+        },
+        "time_window": {
+            "interval_seconds": 60
+        }
+    },
+
+    "cache_config": {
+        "use_in_memory_cache": true,
+        "use_filesystem_cache": false
+    },
+    
+    "database_config": {
+        "host": "localhost",
+        "user": "your-mysql-user",
+        "password": "your-mysql-password",
+        "database": "your-database-name"
+    },
+    
+    "log_management_config": {
+        "log_folder": "/path/to/log/folder",
+        "log_compression_days": 10,
+        "log_delete_months": 2
+    },
+    
+    "save_data_query": "INSERT INTO your_table (startdatetime, enddatetime, total_count) VALUES (%s, %s, %s)"
+}
